@@ -1,0 +1,20 @@
+Estamos probando el envio de un fichero a través de un socket desde un servidor
+a un cliente.
+
+Dado que estamos trabajando en el mismo ordenador crearemos un fichero cuyo nombre 
+será la palabra copia, seguido de la palabra Cliente y después el identificador
+del cliente (ejemplo cliente 1: "copiaCliente1.txt"). De esta forma podremos ver 
+que el envío del fichero es correcto.
+
+Esta prueba corresponde a la ejecución de la aplicación creada para la actividad
+dos de la tarea del tema 3 del módulo Programación de servivios y procesos.
+ 
+Se ha decidido mostrar el contenido del fichero recibido del servidor mediante
+un textarea con sus correspondientes barras de desplazamiento, facilitando, de
+esta manera, la lectura y visualización del mismo. 
+
+El resultado de las pruebas es satisfactorio por lo que se procede a la 
+elaboración de la documentación de dicha actividad.
+
+ 
+  
