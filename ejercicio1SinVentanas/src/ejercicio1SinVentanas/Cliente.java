@@ -1,39 +1,34 @@
+/*
+ * El cliente se conecta al servidor y le va manadando números hasta adivinar el
+ * generado por el servidor.
+ */
 package ejercicio1SinVentanas;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author AnaIglesias
  */
-public class Cliente extends Thread{
-    
-    private static int nCliente;
-    private Socket socket;
-    private DataInputStream flujo_entrada;
-    private DataOutputStream flujo_salida; 
+public class Cliente {
 
-    @Override
-    public void run() {
+    public static void main(String[] args) {
+        Socket socket;
+        DataInputStream flujo_entrada;
+        DataOutputStream flujo_salida;
+        
+        String respuesta = "";
         Scanner entrada = new Scanner(System.in);
-        int numBuscar;
-        String respuesta;
+        int numBuscar = 0;
         
         try {
-            //creamos el socket
             socket = new Socket("localhost",2000);
-            
-            //creamos los flujos de entrada y salida
+            System.out.println("Cliente conectado...");
+            //creamos los flujos
             flujo_entrada = new DataInputStream(socket.getInputStream());
             flujo_salida = new DataOutputStream(socket.getOutputStream());
-            
-            //recibimos el número de Cliente
-            nCliente = flujo_entrada.readInt();
-            System.out.println("Cliente "+nCliente+" conectado...");
             
             do{
                 //pedimos el número al cliente
@@ -54,23 +49,16 @@ public class Cliente extends Thread{
             }while (!respuesta.equalsIgnoreCase("¡¡¡ Has Acertado !!!"));
             
             //cerramos los flujos y el socket
-            System.out.println("Fin de la ejecución para el cliente "+nCliente);
+            System.out.println("Fin de la ejecución");
             flujo_entrada.close();
             flujo_salida.close();
             socket.close();
-            System.out.println("Cliente "+nCliente+" desconectado");
-            
+            System.out.println("Cliente desconectado");
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("El cliente no ha podido conectarse");
         }
         
     }
     
-    
-    
-    public static void main(String[] args) {
-        Cliente cliente = new Cliente();
-        cliente.start();
-    }
     
 }
